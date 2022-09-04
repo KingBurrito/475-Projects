@@ -1,19 +1,14 @@
-﻿using System;
+﻿//stock.cs 
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Threading;
 
 namespace Stock
 {
     //----------------------------------------------------------------------------------- 
-
     public class Stock
     {
-        public event EventHandler<StockNotification> StockEvent;
-
+        
 
         //Name of our stock. 
         private string _name;
@@ -57,8 +52,6 @@ namespace Stock
         }
 
         //-------------------------------------------------------------------------------
-
-
         /// <summary> 
         /// Activates the threads synchronizations 
         /// </summary> 
@@ -68,52 +61,24 @@ namespace Stock
             {
                 Thread.Sleep(500); // 1/2 second 
                 ChangeStockValue();
-                StartProcess();
             }
         }
 
         //-------------------------------------------------------------------------------------- 
-
-        //delegate 
-        public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
-        static void StockNotify(String stockName, int currentValue, int numberChanges)
-        {
-            Console.WriteLine($"Notification received for: {stockName}");
-            Console.WriteLine($"Notification received for: {currentValue}");
-            Console.WriteLine($"Notification received for: {numberChanges}");
-        }
-
-
+        // delegate 
+        //public delegate void StockNotification(String stockName, int currentValue, int numberChanges); 
 
         // event 
-            public event EventHandler<StockNotification> ProcessCompleted;
-
-            public void StartProcess()
-            {
-                Console.WriteLine("Process Starting...");
-                //Some COde Here
+        public event EventHandler<StockNotification> StockEvent;
 
 
 
-            }
-
-            protected virtual void OnProcessCompleted(StockNotification sn)
-            {
-                Console.WriteLine("...Process Completed");
-             
-                ProcessCompleted?.Invoke(this, sn);
-            }
-
-
-
-
-        
-
-
+        protected virtual void OnProcessCompleted(StockNotification e)
+        {
+            StockEvent?.Invoke(this, e);
+        }
 
         //-------------------------------------------------------------------------------
-
-
         /// <summary> 
         /// Changes the stock value and also raising the event of stock value changes 
         /// </summary> 
@@ -124,20 +89,10 @@ namespace Stock
             NumChanges++;
             if ((CurrentValue - InitialValue) > Threshold)
             {  //RAISE THE EVENT 
-
-                StockNotification sn = new StockNotification(StockNotify)   ;
-
-
-                OnProcessCompleted(sn);
-
-                
-
-
-
+                Console.WriteLine("Attempting Invoke...");
+                OnProcessCompleted(new StockNotification(StockName, CurrentValue, NumChanges));
 
             }
         }
-        //---------------------------------------------------------------------------------------
-
     }
 }

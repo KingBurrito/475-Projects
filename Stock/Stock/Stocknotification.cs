@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using System; 
+using System.Collections.Generic; 
+using System.Text; 
+ 
 namespace Stock
 {
     public class StockNotification : EventArgs
@@ -11,7 +10,6 @@ namespace Stock
         public string StockName { get; set; }
         public int CurrentValue { get; set; }
         public int NumChanges { get; set; }
- 
 
         /// <summary> 
         /// Stock notification attributes that are set and changed 
@@ -25,20 +23,9 @@ namespace Stock
             this.StockName = stockName;
             this.CurrentValue = currentValue;
             this.NumChanges = numChanges;
-
-            Console.WriteLine("NEW STOCK NOTIFICATION: " + StockName + "  " + CurrentValue);
         }
+
+       
+
     }
-
-
 }
-
-
-/*string titles = "Broker".PadRight(16) + "Stock".PadRight(16) +
-            "Value".PadRight(16) + "Changes".PadRight(10) + "Date and Time";
-
-Console.WriteLine(titles); 
- 
-            string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-"Lab1_output.txt"); 
-            using (StreamWriter outputFile = new StreamWriter(destPath, false)) */

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9sYuCnHaVoNf1/WdIxzdWSNhqhyhv36FmWInHw0pNTfBHZBTD0J6EJhSsuQblTl3qwPFb/ZfHwyXUmXHIk9eOA==",
+  "dgSpecHash": "Q8XVoXtP3aEF006cRDVgVefXXGbNj9eDaJ3A0NK4/uxAmW7D4mA4oB+CEUP8ulNa87NMbCZVnGCHi7uEgdlERw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Frank\\OneDrive\\Desktop\\Stock\\Stock\\Stock.csproj",
+  "projectFilePath": "C:\\Users\\Frank\\source\\repos\\Stock\\Stock\\Stock.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
