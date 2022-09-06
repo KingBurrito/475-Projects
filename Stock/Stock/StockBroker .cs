@@ -22,10 +22,14 @@ namespace Stock
         //readonly string docPath = @"C:\Users\Documents\CECS 475\Lab3_output.txt"; 
 
         readonly string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-"Lab1_output.txt");
+        "Lab1_output.txt");
+        //readonly string destPath = @"C:\Users\Public\Desktop\Lab3_output.txt"; 
+        //readonly string destPath = "Lab3_output.txt";
 
         public string titles = "Broker".PadRight(10) + "Stock".PadRight(15) +
-            "Value".PadRight(10) + "Changes".PadRight(10) + "Date and Time"; 
+            "Value".PadRight(10) + "Changes".PadRight(10) + "Date and Time";
+
+        static bool start = true;
 //---------------------------------------------------------------------------------------
 
  
@@ -67,11 +71,18 @@ namespace Stock
                 //string statement; 
                 //!NOTE!: Check out C#events, pg.4 
                 // Display the output to the console windows
-                DateTime date1 = DateTime.MinValue;
+                DateTime date1 = DateTime.Now;
                 Console.WriteLine(BrokerName.PadRight(16) + newStock.StockName.PadRight(16) + newStock.CurrentValue.ToString().PadRight(16) 
                                             + newStock.NumChanges.ToString().PadRight(16) + date1.ToString().PadRight(10));
+				
+                if (start)
+                {
+                    File.Delete(destPath);
+                    start = false;
+                }
+               
                 //Display the output to the file 
-                using (StreamWriter outputFile = new StreamWriter(destPath))
+                using (StreamWriter outputFile = File.AppendText(destPath))
                 {
                     outputFile.WriteLine(BrokerName.PadRight(16) + newStock.StockName.PadRight(16) + newStock.CurrentValue.ToString().PadRight(16) 
                                                         + newStock.NumChanges.ToString().PadRight(16) + date1.ToString().PadRight(10));

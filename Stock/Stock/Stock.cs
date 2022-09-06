@@ -89,7 +89,7 @@ namespace Stock
             NumChanges++;
             if ((CurrentValue - InitialValue) > Threshold)
             {  //RAISE THE EVENT 
-                Console.WriteLine("Attempting Invoke...");
+                //Console.WriteLine("Attempting Invoke...");
                 OnProcessCompleted(new StockNotification(StockName, CurrentValue, NumChanges));
 
             }
